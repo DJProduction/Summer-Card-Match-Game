@@ -1,7 +1,11 @@
-/*
- * Create a list that holds all of your cards
- */
+// Holds cards from the "deck" list
+let cardlist = document.querySelector('.card');
 
+// let Card = {
+//     name: "",
+//     back: "",
+//     flipped: false,
+// };
 
 /*
  * Display the cards on the page
