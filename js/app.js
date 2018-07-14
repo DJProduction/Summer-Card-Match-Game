@@ -1,11 +1,6 @@
 // Holds cards from the "deck" list
-let cardlist = document.querySelector('.card');
-
-// let Card = {
-//     name: "",
-//     back: "",
-//     flipped: false,
-// };
+let cardNodelist = document.querySelectorAll('.card');
+let cardsArray = Array.from(cardNodelist);
 
 /*
  * Display the cards on the page
@@ -13,10 +8,11 @@ let cardlist = document.querySelector('.card');
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
+let cardsArrayShuffled = shuffle(cardsArray);
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
+    let currentIndex = array.length, temporaryValue, randomIndex;
 
     while (currentIndex !== 0) {
         randomIndex = Math.floor(Math.random() * currentIndex);
