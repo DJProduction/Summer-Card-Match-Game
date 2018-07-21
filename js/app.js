@@ -8,7 +8,12 @@ let cardsArray = Array.from(cardNodelist);
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
+let deckNodeList = document.querySelector('.deck');
 let cardsArrayShuffled = shuffle(cardsArray);
+// Array will hold the created elements
+let newCardList = [];
+
+createCardList(newCardList,cardsArrayShuffled);
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -23,6 +28,16 @@ function shuffle(array) {
     }
 
     return array;
+}
+
+// Creates new array list of card elements
+// The origionalArrayList represents the cardsArrayShuffled
+function createCardList(newArraylist, origionalArrayList ) {
+    for(let i = 0; i < origionalArrayList.length; i++) {
+        newArraylist.push(document.createElement(origionalArrayList[i].tagName));
+        newArraylist.className = origionalArrayList[i].className;
+        newArraylist.innerHTML = origionalArrayList[i].innerHTML;
+    }
 }
 
 
