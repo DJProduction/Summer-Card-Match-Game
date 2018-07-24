@@ -13,7 +13,9 @@ let cardsArrayShuffled = shuffle(cardsArray);
 // Array will hold the created elements
 let newCardList = [];
 
-createCardList(newCardList,cardsArrayShuffled);
+createCardArrayList(newCardList,cardsArrayShuffled);
+removeCardNodeList(deckNodeList);
+addCardNodeList(newCardList,deckNodeList);
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -32,11 +34,29 @@ function shuffle(array) {
 
 // Creates new array list of card elements
 // The origionalArrayList represents the cardsArrayShuffled
-function createCardList(newArraylist, origionalArrayList ) {
+function createCardArrayList(newArraylist, origionalArrayList ) {
     for(let i = 0; i < origionalArrayList.length; i++) {
         newArraylist.push(document.createElement(origionalArrayList[i].tagName));
-        newArraylist.className = origionalArrayList[i].className;
-        newArraylist.innerHTML = origionalArrayList[i].innerHTML;
+        newArraylist[i].className = origionalArrayList[i].className;
+        newArraylist[i].innerHTML = origionalArrayList[i].innerHTML;
+    }
+}
+
+// Cycles through Nodelist and removes each element until the
+// element count reaches 0.
+function removeCardNodeList( origionalDeckNodeList ) {
+    let i = 0;
+    while(origionalDeckNodeList.childElementCount != 0) {
+        console.log(origionalDeckNodeList.children[i]);
+        origionalDeckNodeList.children[i].remove();
+    }
+}
+
+// Adds randomized array of cards to the origionalDeckNodeList
+function addCardNodeList( randomizedArrayList, origionalDeckNodeList) {
+    for (let i = 0; i < randomizedArrayList.length; i++) {
+        console.log(randomizedArrayList[i]);
+        origionalDeckNodeList.appendChild(randomizedArrayList[i]);
     }
 }
 
