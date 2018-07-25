@@ -12,12 +12,24 @@ let deckNodeList = document.querySelector('.deck');
 let cardsArrayShuffled = shuffle(cardsArray);
 // Array will hold the created elements
 let newCardList = [];
+// Hold the amount of moves performed in one game
+let numberOfMoves = 0;
+// Holds the number of cards flipped by user. This value should never reach over 2.
+let cardsFlipped = 0;
+// Holds the number of current matches found by the user
+let currentNumberofMatches = 0;
+// Holds the number of matches needed to win the game
+let numberOfMatchesToWin = cardsArray.length/2;
 
 createCardArrayList(newCardList,cardsArrayShuffled);
 removeCardNodeList(deckNodeList);
 addCardNodeList(newCardList,deckNodeList);
 
+document.querySelector('.deck').addEventListener('click', cardSelected);
 
+function cardSelected(event) {
+    console.log("Card " + event.target.innerHTML + "was selected");
+  }
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
