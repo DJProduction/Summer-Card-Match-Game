@@ -50,6 +50,10 @@ function cardSelected(event) {
     if(event.target.className === "card") {
         displayCard(event);
         addToOpenedCardList(event,openedCardList);
+        //Continue to checking portion when 2 cards are in openedCardList
+        if(openedCardList.length >= 2) {
+
+        }
     }
   }
 
