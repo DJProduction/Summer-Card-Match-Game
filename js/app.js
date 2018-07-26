@@ -56,6 +56,10 @@ function cardSelected(event) {
             if (openedCardList[0].innerHTML = openedCardList[1]) {
                 matchFound(openedCardList);
             }
+            //If cards do not match
+            else {
+                matchNotFound(openedCardList);
+            }
         }
     }
   }
@@ -70,12 +74,19 @@ function addToOpenedCardList(event, openCardList) {
     openCardList.push(event.target);
 }
 
+// Changes element class of the last two cards in the opened list to show as a match
 function matchFound(openCardList) {
     openCardList[openCardList.length-2].className = "card match";
     openCardList[openCardList,length-1].className = "card match";
 }
 
-
+// Removes last two cards from the opened list
+function matchNotFound(openCardList) {
+    for(let i=0; i<2; i++) {
+        openCardList[openCardList.length-1].className = "card";
+        openCardList.pop();
+    }
+}
 
 /* General Card Functions */
 
