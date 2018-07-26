@@ -12,6 +12,8 @@ let deckNodeList = document.querySelector('.deck');
 let cardsArrayShuffled = shuffle(cardsArray);
 // Array will hold the created elements
 let newCardList = [];
+
+
 // Hold the amount of moves performed in one game
 let numberOfMoves = 0;
 // Holds the number of cards flipped by user. This value should never reach over 2.
@@ -25,11 +27,6 @@ createCardArrayList(newCardList,cardsArrayShuffled);
 removeCardNodeList(deckNodeList);
 addCardNodeList(newCardList,deckNodeList);
 
-document.querySelector('.deck').addEventListener('click', cardSelected);
-
-function cardSelected(event) {
-    console.log("Card " + event.target.innerHTML + "was selected");
-  }
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
@@ -40,6 +37,18 @@ function cardSelected(event) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+
+document.querySelector('.deck').addEventListener('click', cardSelected);
+
+function cardSelected(event) {
+    if(event.target.className === "card") {
+        displayCard(event);
+    }
+  }
+
+function displayCard(event) {
+    event.target.className = "card open show";
+}
 
  // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
