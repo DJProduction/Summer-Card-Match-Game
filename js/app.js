@@ -40,6 +40,8 @@ addCardNodeList(newCardList,deckNodeList);
 
 document.querySelector('.deck').addEventListener('click', cardSelected);
 
+/* EventListener Functions */
+
 function cardSelected(event) {
     if(event.target.className === "card") {
         displayCard(event);
@@ -49,6 +51,8 @@ function cardSelected(event) {
 function displayCard(event) {
     event.target.className = "card open show";
 }
+
+/* General Card Functions */
 
  // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
