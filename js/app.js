@@ -10,9 +10,11 @@ let cardsArray = Array.from(cardNodelist);
  */
 let deckNodeList = document.querySelector('.deck');
 let cardsArrayShuffled = shuffle(cardsArray);
+
 // Array will hold the created elements
 let newCardList = [];
-
+// Array will hold the cards opened
+let openedCardList = [];
 
 // Hold the amount of moves performed in one game
 let numberOfMoves = 0;
@@ -22,6 +24,8 @@ let cardsFlipped = 0;
 let currentNumberofMatches = 0;
 // Holds the number of matches needed to win the game
 let numberOfMatchesToWin = cardsArray.length/2;
+
+
 
 createCardArrayList(newCardList,cardsArrayShuffled);
 removeCardNodeList(deckNodeList);
@@ -45,11 +49,18 @@ document.querySelector('.deck').addEventListener('click', cardSelected);
 function cardSelected(event) {
     if(event.target.className === "card") {
         displayCard(event);
+        addToOpenedCardList(event,openedCardList);
     }
   }
 
+// Display currently selected card
 function displayCard(event) {
     event.target.className = "card open show";
+}
+
+// Adds card to an array list
+function addToOpenedCardList(event, openCardList) {
+    openCardList.push(event.target);
 }
 
 /* General Card Functions */
