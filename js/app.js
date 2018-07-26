@@ -50,8 +50,8 @@ function cardSelected(event) {
     if(event.target.className === "card") {
         displayCard(event);
         addToOpenedCardList(event,openedCardList);
-        //Continue to checking portion when 2 cards are in openedCardList
-        if(openedCardList.length >= 2) {
+        // Continue to the checking portion when openedCardList holds an even amount of cards
+        if(openedCardList.length%2 === 0 ) {
             //If the 2 cards match
             if (openedCardList[0].innerHTML = openedCardList[1]) {
                 matchFound(openedCardList);
