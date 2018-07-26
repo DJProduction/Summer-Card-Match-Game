@@ -52,7 +52,10 @@ function cardSelected(event) {
         addToOpenedCardList(event,openedCardList);
         //Continue to checking portion when 2 cards are in openedCardList
         if(openedCardList.length >= 2) {
-
+            //If the 2 cards match
+            if (openedCardList[0].innerHTML = openedCardList[1]) {
+                matchFound(openedCardList);
+            }
         }
     }
   }
@@ -66,6 +69,13 @@ function displayCard(event) {
 function addToOpenedCardList(event, openCardList) {
     openCardList.push(event.target);
 }
+
+function matchFound(openCardList) {
+    openCardList[openCardList.length-2].className = "card match";
+    openCardList[openCardList,length-1].className = "card match";
+}
+
+
 
 /* General Card Functions */
 
