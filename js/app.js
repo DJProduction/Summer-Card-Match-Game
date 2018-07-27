@@ -77,7 +77,7 @@ function addToOpenedCardList(event, openCardList) {
 // Changes element class of the last two cards in the opened list to show as a match
 function matchFound(openCardList) {
     openCardList[openCardList.length-2].className = "card match";
-    openCardList[openCardList,length-1].className = "card match";
+    openCardList[openCardList.length-1].className = "card match";
 }
 
 // Removes last two cards from the opened list
