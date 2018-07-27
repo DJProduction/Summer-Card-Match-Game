@@ -53,7 +53,7 @@ function cardSelected(event) {
         // Continue to the checking portion when openedCardList holds an even amount of cards
         if(openedCardList.length%2 === 0 ) {
             //If the 2 cards match
-            if (openedCardList[0].innerHTML = openedCardList[1]) {
+            if (openedCardList[openedCardList.length-2].innerHTML === openedCardList[openedCardList.length-1]) {
                 matchFound(openedCardList);
             }
             //If cards do not match
