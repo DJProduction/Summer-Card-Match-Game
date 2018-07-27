@@ -51,9 +51,7 @@ document.querySelector('.deck').addEventListener('click', cardSelected);
 
 function cardSelected(event) {
     if(event.target.className === "card") {
-        //Increment and update the number of monves
-        numberOfMoves++;
-        movesCounter.textContent = numberOfMoves;
+        increaseNumberofMoves();
         displayCard(event);
         addToOpenedCardList(event,openedCardList);
         // Continue to the checking portion when openedCardList holds an even amount of cards
@@ -92,6 +90,12 @@ function matchNotFound(openCardList) {
         openCardList[openCardList.length-1].className = "card";
         openCardList.pop();
     }
+}
+
+//Increment and update the number of monves
+function increaseNumberofMoves() {
+    numberOfMoves++;
+    movesCounter.textContent = numberOfMoves;
 }
 
 /* General Card Functions */
