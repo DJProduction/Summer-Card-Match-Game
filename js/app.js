@@ -16,8 +16,11 @@ let newCardList = [];
 // Array will hold the cards opened
 let openedCardList = [];
 
+// Holds number of moves element
+const movesCounter = document.querySelector('.moves');
 // Hold the amount of moves performed in one game
 let numberOfMoves = 0;
+
 // Holds the number of cards flipped by user. This value should never reach over 2.
 let cardsFlipped = 0;
 // Holds the number of current matches found by the user
@@ -48,6 +51,9 @@ document.querySelector('.deck').addEventListener('click', cardSelected);
 
 function cardSelected(event) {
     if(event.target.className === "card") {
+        //Increment and update the number of monves
+        numberOfMoves++;
+        movesCounter.textContent = numberOfMoves;
         displayCard(event);
         addToOpenedCardList(event,openedCardList);
         // Continue to the checking portion when openedCardList holds an even amount of cards
