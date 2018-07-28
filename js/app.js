@@ -27,7 +27,8 @@ const fullStar = "fa fa-star";
 const halfStar = "fa fa-star-half-full";
 const emptyStar = "fa fa-star-o";
 
-
+// Holds length of time after cards do not match
+const noMatchTimeDelay = 1500;
 
 createCardArrayList(newCardList,cardsArrayShuffled);
 removeCardNodeList(deckNodeList);
@@ -65,7 +66,7 @@ function cardSelected(event) {
             }
             //If cards do not match
             else {
-                matchNotFound(openedCardList);
+                setTimeout( function(){matchNotFound(openedCardList);} ,noMatchTimeDelay)
             }
         }
     }
