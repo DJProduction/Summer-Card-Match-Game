@@ -21,6 +21,12 @@ const movesCounter = document.querySelector('.moves');
 // Hold the amount of moves performed in one game
 let numberOfMoves = 0;
 
+// Holds the scores rating stars
+let scoreStars = document.querySelector('.stars');
+const fullStar = "fa fa-star";
+const halfStar = "fa fa-star-half-full";
+const emptyStar = "fa fa-star-o";
+
 // Holds the number of cards flipped by user. This value should never reach over 2.
 let cardsFlipped = 0;
 // Holds the number of current matches found by the user
@@ -52,6 +58,7 @@ document.querySelector('.deck').addEventListener('click', cardSelected);
 function cardSelected(event) {
     if(event.target.className === "card") {
         increaseNumberofMoves();
+        checkStarRating(numberOfMoves);
         displayCard(event);
         addToOpenedCardList(event,openedCardList);
         // Continue to the checking portion when openedCardList holds an even amount of cards
@@ -92,10 +99,31 @@ function matchNotFound(openCardList) {
     }
 }
 
-//Increment and update the number of monves
+// Increment and update the number of monves
 function increaseNumberofMoves() {
     numberOfMoves++;
     movesCounter.textContent = numberOfMoves;
+}
+
+// Measure number of stars shown based on the number of moves
+function checkStarRating(amountOfMoves) {
+    switch(amountOfMoves) {
+        case 24:
+        scoreStars.children[2].children[0].className = halfStar;
+        break;
+        case 30:
+        scoreStars.children[2].children[0].className = emptyStar;
+        break;
+        case 35:
+        scoreStars.children[1].children[0].className = halfStar;
+        break;
+        case 40:
+        scoreStars.children[1].children[0].className = emptyStar;
+        break;
+        case 45:
+        scoreStars.children[0].children[0].className = halfStar;
+        break;
+    }
 }
 
 /* General Card Functions */
