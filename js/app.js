@@ -51,7 +51,10 @@ addCardNodeList(newCardList,deckNodeList);
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
+/* EventListeners */
+
 document.querySelector('.deck').addEventListener('click', cardSelected);
+document.querySelector('.restart').addEventListener('click', restartGame);
 
 /* EventListener Functions */
 
@@ -124,6 +127,11 @@ function checkStarRating(amountOfMoves) {
         scoreStars.children[0].children[0].className = halfStar;
         break;
     }
+}
+
+// Resets the game by reloading the page
+function restartGame() {
+    location.reload();
 }
 
 /* General Card Functions */
