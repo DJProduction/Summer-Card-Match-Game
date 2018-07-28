@@ -27,13 +27,6 @@ const fullStar = "fa fa-star";
 const halfStar = "fa fa-star-half-full";
 const emptyStar = "fa fa-star-o";
 
-// Holds the number of cards flipped by user. This value should never reach over 2.
-let cardsFlipped = 0;
-// Holds the number of current matches found by the user
-let currentNumberofMatches = 0;
-// Holds the number of matches needed to win the game
-let numberOfMatchesToWin = cardsArray.length/2;
-
 
 
 createCardArrayList(newCardList,cardsArrayShuffled);
