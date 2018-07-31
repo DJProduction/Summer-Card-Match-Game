@@ -63,6 +63,10 @@ function cardSelected(event) {
             //If the 2 cards match
             if (openedCardList[openedCardList.length-2].innerHTML === openedCardList[openedCardList.length-1].innerHTML) {
                 matchFound(openedCardList);
+                //Function is set here because the document does not need to check
+                //during each card selection. This function is only important
+                //when a match is found.
+                winGameCheck(openedCardList);
             }
             //If cards do not match
             else {
@@ -120,6 +124,15 @@ function checkStarRating(amountOfMoves) {
         case 45:
         scoreStars.children[0].children[0].className = halfStar;
         break;
+    }
+}
+
+//matches openedCardList to the newCardList to make sure that all
+//the cards were successfully matches.
+function winGameCheck(openCardList) {
+    //if(openCardList.length === newCardList.length) {
+    if(openCardList.length === 4) {
+        window.location.href="winner.html";
     }
 }
 
