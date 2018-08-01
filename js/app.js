@@ -28,7 +28,7 @@ const halfStar = "fa fa-star-half-full";
 const emptyStar = "fa fa-star-o";
 
 // Holds length of time after cards do not match
-const noMatchTimeDelay = 1500;
+const noMatchTimeDelay = 500;
 
 createCardArrayList(newCardList,cardsArrayShuffled);
 removeCardNodeList(deckNodeList);
@@ -142,11 +142,11 @@ function winGameCheck(openCardList) {
 //Use the scoreStars list to count and return the number of stars
 function countStars(scoreStars) {
     let starCount = 0;
-    for(let i=0; i<scoreStars.length; i++) {
-        if(scoreStars.children[i].children[0].className === fullStar) {
+    for(let i=0; i<scoreStars.childElementCount; i++) {
+        if(scoreStars.children[i].children[0].className == fullStar) {
             starCount++;
         }
-        else if(scoreStars.children[i].children[0].className === halfStar) {
+        else if(scoreStars.children[i].children[0].className == halfStar) {
             starCount=starCount+0.5;
         }
         else{
