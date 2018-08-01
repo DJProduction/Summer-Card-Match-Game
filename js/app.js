@@ -132,8 +132,28 @@ function checkStarRating(amountOfMoves) {
 function winGameCheck(openCardList) {
     //if(openCardList.length === newCardList.length) {
     if(openCardList.length === 4) {
+        sessionStorage.setItem("moves", numberOfMoves);
+        let numberOfStars = countStars(scoreStars);
+        sessionStorage.setItem("stars", numberOfStars);
         window.location.href="winner.html";
     }
+}
+
+//Use the scoreStars list to count and return the number of stars
+function countStars(scoreStars) {
+    let starCount = 0;
+    for(let i=0; i<scoreStars.length; i++) {
+        if(scoreStars.children[i].children[0].className === fullStar) {
+            starCount++;
+        }
+        else if(scoreStars.children[i].children[0].className === halfStar) {
+            starCount=starCount+0.5;
+        }
+        else{
+            console.log("Start " + i + "is empty star");
+        }
+    }
+    return starCount;
 }
 
 // Resets the game by reloading the page
