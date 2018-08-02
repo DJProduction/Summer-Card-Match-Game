@@ -6,19 +6,26 @@
     <meta name="description" content="">
     <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
-    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/winner.css">
 </head>
 <body>
-    <img srcset="img/winning-brain.jpeg">
-    <h1>Congradulations!!!</h1>
-    <p>You have won the game.</p>
-    <span>You completed the game in </span>
-    <span id="moves">0</span>
-    <span>moves with </span>
-    <span id="stars">0</span>
-    <span>stars</span>
+    <div class="container">
+        <img srcset="img/winning-brain.jpeg">
+        <h1>Congradulations!!!</h1>
+        <p>
+            You have won the game.
+            <br /> You completed the game in
+            <span id="moves"> 0 </span>
+            moves with
+            <span id="stars"> 0 </span>
+            stars.
+        </p>
+        <p>
+            <button>Restart Game</button>
+            <button onclick="window.location='http://www.example.com';">Visit Page Now</button>
+        </p>
+    </div>
 
-    <button>Restart Game</button>
 
     <script src="js/winner.js"></script>
 </body>
