@@ -78,7 +78,7 @@ function cardSelected(event) {
 
 // Display currently selected card
 function displayCard(event) {
-    event.target.className = "card open show";
+    event.target.className = "card open";
 }
 
 // Adds card to an array list
