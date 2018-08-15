@@ -53,7 +53,8 @@ document.querySelector('.restart').addEventListener('click', restartGame);
 /* EventListener Functions */
 
 function cardSelected(event) {
-    if(event.target.className === "card") {
+    if(event.target.className === "card" ||
+    event.target.className === "card closed" ) {
         increaseNumberofMoves();
         checkStarRating(numberOfMoves);
         displayCard(event);
@@ -78,7 +79,7 @@ function cardSelected(event) {
 
 // Display currently selected card
 function displayCard(event) {
-    event.target.className = "card open";
+    event.target.className = "card open show";
 }
 
 // Adds card to an array list
