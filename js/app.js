@@ -95,7 +95,7 @@ function matchFound(openCardList) {
 // Removes last two cards from the opened list
 function matchNotFound(openCardList) {
     for(let i=0; i<2; i++) {
-        openCardList[openCardList.length-1].className = "card";
+        openCardList[openCardList.length-1].className = "card closed";
         openCardList.pop();
     }
 }
