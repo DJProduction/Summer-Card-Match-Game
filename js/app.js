@@ -28,7 +28,7 @@ const halfStar = "fa fa-star-half-full";
 const emptyStar = "fa fa-star-o";
 
 // Holds length of time after cards do not match
-const noMatchTimeDelay = 500;
+const noMatchTimeDelay = 800;
 
 createCardArrayList(newCardList,cardsArrayShuffled);
 removeCardNodeList(deckNodeList);
@@ -71,7 +71,7 @@ function cardSelected(event) {
             }
             //If cards do not match
             else {
-                setTimeout( function(){matchNotFound(openedCardList);} ,noMatchTimeDelay)
+                matchNotFound(openedCardList);
             }
         }
     }
@@ -95,10 +95,14 @@ function matchFound(openCardList) {
 
 // Removes last two cards from the opened list
 function matchNotFound(openCardList) {
-    for(let i=0; i<2; i++) {
-        openCardList[openCardList.length-1].className = "card closed";
-        openCardList.pop();
-    }
+    openCardList[openCardList.length - 2].className = "card no-match";
+    openCardList[openCardList.length - 1].className = "card no-match";
+    setTimeout(function () {
+        for (let i = 0; i < 2; i++) {
+            openCardList[openCardList.length - 1].className = "card closed";
+            openCardList.pop();
+        }
+    }, noMatchTimeDelay)
 }
 
 // Increment and update the number of monves
