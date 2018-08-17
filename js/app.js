@@ -136,7 +136,7 @@ function checkStarRating(amountOfMoves) {
 //the cards were successfully matches.
 function winGameCheck(openCardList) {
     //if(openCardList.length === newCardList.length) {
-    if(openCardList.length === 4) {
+    if(openCardList.length === cardsArrayShuffled.length) {
         sessionStorage.setItem("moves", numberOfMoves);
         let numberOfStars = countStars(scoreStars);
         sessionStorage.setItem("stars", numberOfStars);
