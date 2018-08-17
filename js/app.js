@@ -57,6 +57,7 @@ function cardSelected(event) {
     event.target.className === "card closed" ) {
         increaseNumberofMoves();
         checkStarRating(numberOfMoves);
+        changeBackground(numberOfMoves);
         displayCard(event);
         addToOpenedCardList(event,openedCardList);
         // Continue to the checking portion when openedCardList holds an even amount of cards
@@ -159,6 +160,16 @@ function countStars(scoreStars) {
         }
     }
     return starCount;
+}
+
+// Change background according to the number of moves
+function changeBackground(amountOfMoves) {
+    if(amountOfMoves === 30) {
+        document.querySelector('.deck').style.background = 'linear-gradient(160deg, #fff06b 40%, #dd9b0d 60%)';
+    }
+    else if(amountOfMoves === 40) {
+        document.querySelector('.deck').style.background = 'linear-gradient(160deg, #e4944a 40%, #bb2c2c 60%)';
+    }
 }
 
 // Resets the game by reloading the page

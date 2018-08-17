@@ -40,7 +40,9 @@ h1 {
 .deck {
     width: 660px;
     min-height: 680px;
-    background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
+    background: linear-gradient(160deg, #02ccba 40%, #ffee55 60%);
+    /* background: linear-gradient(160deg, #fff06b 40%, #dd9b0d 60%); */
+    /* background: linear-gradient(160deg, #e4944a 40%, #bb2c2c 60%); */
     padding: 32px;
     border-radius: 10px;
     box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
