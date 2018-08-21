@@ -23,19 +23,18 @@ body,
     padding-bottom: 25%;
 }
 
-/* img,
-h1,
-p */
-
+/* Controls general wording below the image */
 p {
     font-size: 20px;
 }
 
+/* Controls how the number of moves and the number of stars will look */
 #moves,
 #stars {
     font-weight: bold;
 }
 
+/* Controls the Restart Game button */
 button {
     display: inline-block;
     padding: 15px 25px;
