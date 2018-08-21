@@ -41,8 +41,6 @@ h1 {
     width: 660px;
     min-height: 680px;
     background: linear-gradient(160deg, #02ccba 40%, #ffee55 60%);
-    /* background: linear-gradient(160deg, #fff06b 40%, #dd9b0d 60%); */
-    /* background: linear-gradient(160deg, #e4944a 40%, #bb2c2c 60%); */
     padding: 32px;
     border-radius: 10px;
     box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
@@ -99,6 +97,11 @@ h1 {
     font-size: 33px;
     -webkit-animation: wobble-hor-bottom 0.8s both;
     animation: wobble-hor-bottom 0.8s both;
+}
+
+/* All actions will be suspended while match not found animations occur */
+.deck .card.suspended-actions {
+  pointer-events: none;
 }
 
 /*

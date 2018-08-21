@@ -72,6 +72,9 @@ function cardSelected(event) {
             }
             //If cards do not match
             else {
+                //Suspend face down cards so that the user
+                //does not select any of them quickly
+                suspendNonMatchedCardActions();
                 matchNotFound(openedCardList);
             }
         }
@@ -103,7 +106,32 @@ function matchNotFound(openCardList) {
             openCardList[openCardList.length - 1].className = "card closed";
             openCardList.pop();
         }
+        //Restore event listener back to face down cards
+        //when delay animation finishes
+        restoreNonMatchedCardActions();
     }, noMatchTimeDelay)
+}
+
+//Suspends actions for the array of cards.
+//Used mainly when animations are occuring
+function suspendNonMatchedCardActions() {
+    for(let i=0; i < newCardList.length; i++ ) {
+        //if Statement does not need to check of "matched" because
+        //the beginning if statement in event handler will check for "matched"
+        if(!newCardList[i].classList.contains("open")) {
+            newCardList[i].classList.add("suspended-actions");
+        }
+    }
+}
+
+//Restores actions to the suspended array of cards.
+//Used mainly when animations are occuring
+function restoreNonMatchedCardActions() {
+    for(let i=0; i < newCardList.length; i++ ) {
+        if(newCardList[i].classList.contains("suspended-actions")) {
+            newCardList[i].classList.remove("suspended-actions");
+        }
+    }
 }
 
 // Increment and update the number of monves
