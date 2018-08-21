@@ -69,32 +69,40 @@ h1 {
     transform: rotateY(0);
     background: #02b3e4;
     cursor: default;
+    /* Flip animation to show card is face-up */
 	-webkit-animation: flip-vertical-right 0.3s cubic-bezier(0.455, 0.030, 0.515, 0.955) reverse backwards;
 	        animation: flip-vertical-right 0.3s cubic-bezier(0.455, 0.030, 0.515, 0.955) reverse backwards;
 }
 
+/* Controls the size of the icon located on the back of the card */
 .deck .card.show {
 	font-size: 33px;
 }
 
+/* Flip animation to show card is face-down */
 .deck .card.closed {
 	-webkit-animation: flip-vertical-left 0.4s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
             animation: flip-vertical-left 0.4s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
 }
 
+/* Control how cards look when a match is found */
 .deck .card.match {
     cursor: default;
     background: #02ccba;
     font-size: 33px;
+    /* Flip animation to show card is face-up */
 	-webkit-animation: flip-vertical-right 0.2s cubic-bezier(0.455, 0.030, 0.515, 0.955) reverse backwards;
             animation: flip-vertical-right 0.2s cubic-bezier(0.455, 0.030, 0.515, 0.955) reverse backwards;
+            /* Bounce animation to ecknowledge a card match was found */
     -webkit-animation: jello-horizontal 0.9s both;
 	        animation: jello-horizontal 0.9s both;
 }
 
+/* Control how cards look when a match is not found */
 .deck .card.no-match {
     background: #dd0505;
     font-size: 33px;
+    /* Wobble animation to ecknowledge a card match was not found */
     -webkit-animation: wobble-hor-bottom 0.8s both;
     animation: wobble-hor-bottom 0.8s both;
 }
