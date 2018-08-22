@@ -2,13 +2,9 @@
 let cardNodelist = document.querySelectorAll('.card');
 let cardsArray = Array.from(cardNodelist);
 
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
+//Holds the complete deck container
 let deckNodeList = document.querySelector('.deck');
+//Shuffles the origionally created array of cards into new array
 let cardsArrayShuffled = shuffle(cardsArray);
 
 // Array will hold the created elements
@@ -30,22 +26,20 @@ const emptyStar = "fa fa-star-o";
 // Holds length of time after cards do not match
 const noMatchTimeDelay = 800;
 
+/*------------------------------GAME START----------------------------*/
+
+// Create new ArrayList update with the cardsArrayShuffled
+// Loops through each card and create its HTML
+// This is necessary because cardsArrayShuffled is not in sync with the new positions.
+// cardsArrayShuffled[0] COULD be pointing to the last row card
+// This makes everything more organized. Ex: newCardList[0] = top left card
 createCardArrayList(newCardList,cardsArrayShuffled);
+// Clears out old deckNodeList. To be replaced by newCardList
 removeCardNodeList(deckNodeList);
+// Adds newCardList array to deckNodeList to display shuffled cards to the screen
 addCardNodeList(newCardList,deckNodeList);
 
-/*
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
-
-/* EventListeners */
+/************** EventListeners ***********************/
 
 document.querySelector('.deck').addEventListener('click', cardSelected);
 document.querySelector('.restart').addEventListener('click', restartGame);
@@ -62,18 +56,18 @@ function cardSelected(event) {
         addToOpenedCardList(event,openedCardList);
         // Continue to the checking portion when openedCardList holds an even amount of cards
         if(openedCardList.length%2 === 0 ) {
-            //If the 2 cards match
+            // If the 2 cards match
             if (openedCardList[openedCardList.length-2].innerHTML === openedCardList[openedCardList.length-1].innerHTML) {
                 matchFound(openedCardList);
-                //Function is set here because the document does not need to check
-                //during each card selection. This function is only important
-                //when a match is found.
+                // Function is set here because the document does not need to check
+                // during each card selection. This function is only important
+                // when a match is found.
                 winGameCheck(openedCardList);
             }
-            //If cards do not match
+            // If cards do not match
             else {
-                //Suspend face down cards so that the user
-                //does not select any of them quickly
+                // Suspend face down cards so that the user
+                // does not select any other card quickly
                 suspendNonMatchedCardActions();
                 matchNotFound(openedCardList);
             }
@@ -98,6 +92,8 @@ function matchFound(openCardList) {
 }
 
 // Removes last two cards from the opened list
+// Stalls any eventListeners
+// Flips the 2 cards face down
 function matchNotFound(openCardList) {
     openCardList[openCardList.length - 2].className = "card no-match";
     openCardList[openCardList.length - 1].className = "card no-match";
@@ -106,26 +102,26 @@ function matchNotFound(openCardList) {
             openCardList[openCardList.length - 1].className = "card closed";
             openCardList.pop();
         }
-        //Restore event listener back to face down cards
-        //when delay animation finishes
+        // Restore event listener back to face down cards
+        // when delay animation finishes
         restoreNonMatchedCardActions();
     }, noMatchTimeDelay)
 }
 
-//Suspends actions for the array of cards.
-//Used mainly when animations are occuring
+// Suspends actions for the array of cards.
+// Used mainly when animations are occuring
 function suspendNonMatchedCardActions() {
     for(let i=0; i < newCardList.length; i++ ) {
-        //if Statement does not need to check of "matched" because
-        //the beginning if statement in event handler will check for "matched"
+        // if Statement does not need to check of "matched" because
+        // the beginning if statement in event handler will check for "matched"
         if(!newCardList[i].classList.contains("open")) {
             newCardList[i].classList.add("suspended-actions");
         }
     }
 }
 
-//Restores actions to the suspended array of cards.
-//Used mainly when animations are occuring
+// Restores actions to the suspended array of cards.
+// Used mainly when animations are occuring
 function restoreNonMatchedCardActions() {
     for(let i=0; i < newCardList.length; i++ ) {
         if(newCardList[i].classList.contains("suspended-actions")) {
@@ -161,10 +157,10 @@ function checkStarRating(amountOfMoves) {
     }
 }
 
-//matches openedCardList to the newCardList to make sure that all
-//the cards were successfully matches.
+// matches openedCardList to the newCardList to make sure that all
+// the cards were successfully matches.
 function winGameCheck(openCardList) {
-    //if(openCardList.length === newCardList.length) {
+    // if(openCardList.length === newCardList.length) {
     if(openCardList.length === cardsArrayShuffled.length) {
         sessionStorage.setItem("moves", numberOfMoves);
         let numberOfStars = countStars(scoreStars);
@@ -173,7 +169,7 @@ function winGameCheck(openCardList) {
     }
 }
 
-//Use the scoreStars list to count and return the number of stars
+// Use the scoreStars list to count and return the number of stars
 function countStars(scoreStars) {
     let starCount = 0;
     for(let i=0; i<scoreStars.childElementCount; i++) {
@@ -237,7 +233,6 @@ function createCardArrayList(newArraylist, origionalArrayList ) {
 function removeCardNodeList( origionalDeckNodeList ) {
     let i = 0;
     while(origionalDeckNodeList.childElementCount != 0) {
-        console.log(origionalDeckNodeList.children[i]);
         origionalDeckNodeList.children[i].remove();
     }
 }
@@ -245,7 +240,6 @@ function removeCardNodeList( origionalDeckNodeList ) {
 // Adds randomized array of cards to the origionalDeckNodeList
 function addCardNodeList( randomizedArrayList, origionalDeckNodeList) {
     for (let i = 0; i < randomizedArrayList.length; i++) {
-        console.log(randomizedArrayList[i]);
         origionalDeckNodeList.appendChild(randomizedArrayList[i]);
     }
 }
