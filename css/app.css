@@ -118,6 +118,8 @@ h1 {
 
 .score-panel {
     text-align: left;
+    font-size: 20px;
+    font-family: Trebuchet MS,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Tahoma,sans-serif;
     width: 345px;
     margin-bottom: 10px;
 }
@@ -132,6 +134,11 @@ h1 {
 .score-panel .stars li {
     list-style: none;
     display: inline-block;
+}
+
+.score-panel .timer {
+  display: inline-block;
+  margin-left: 50px;
 }
 
 .score-panel .restart {
