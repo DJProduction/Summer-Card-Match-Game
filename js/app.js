@@ -2,9 +2,9 @@
 let cardNodelist = document.querySelectorAll('.card');
 let cardsArray = Array.from(cardNodelist);
 
-//Holds the complete deck container
+// Holds the complete deck container
 let deckNodeList = document.querySelector('.deck');
-//Shuffles the origionally created array of cards into new array
+// Shuffles the origionally created array of cards into new array
 let cardsArrayShuffled = shuffle(cardsArray);
 
 // Array will hold the created elements
@@ -16,6 +16,11 @@ let openedCardList = [];
 const movesCounter = document.querySelector('.moves');
 // Hold the amount of moves performed in one game
 let numberOfMoves = 0;
+
+// Timer variables
+let seconds=0, minutes=0
+let counter;
+let counting = false;
 
 // Holds the scores rating stars
 let scoreStars = document.querySelector('.stars');
@@ -38,6 +43,12 @@ createCardArrayList(newCardList,cardsArrayShuffled);
 removeCardNodeList(deckNodeList);
 // Adds newCardList array to deckNodeList to display shuffled cards to the screen
 addCardNodeList(newCardList,deckNodeList);
+
+window.onload = function () {
+    counter = document.querySelector('.counter');
+    counting = true;
+    incrementTimer();
+}
 
 /************** EventListeners ***********************/
 
@@ -162,6 +173,7 @@ function checkStarRating(amountOfMoves) {
 function winGameCheck(openCardList) {
     // if(openCardList.length === newCardList.length) {
     if(openCardList.length === cardsArrayShuffled.length) {
+        counting = false;
         sessionStorage.setItem("moves", numberOfMoves);
         let numberOfStars = countStars(scoreStars);
         sessionStorage.setItem("stars", numberOfStars);
@@ -201,7 +213,7 @@ function restartGame() {
     location.reload();
 }
 
-/* General Card Functions */
+/***************** General Card Functions ************************/
 
  // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -241,5 +253,23 @@ function removeCardNodeList( origionalDeckNodeList ) {
 function addCardNodeList( randomizedArrayList, origionalDeckNodeList) {
     for (let i = 0; i < randomizedArrayList.length; i++) {
         origionalDeckNodeList.appendChild(randomizedArrayList[i]);
+    }
+}
+
+function incrementTimer() {
+    if (seconds >= 60) {
+        minutes++;
+        seconds = 0;
+    }
+    // Add extra 0 if seconds is below 10
+    if (seconds < 10) {
+        counter.innerHTML = "Time: " + minutes + ":0" + seconds;
+    }
+    else {
+        counter.innerHTML = "Time: " + minutes + ":" + seconds;
+    }
+    if (counting) {
+        seconds++;
+        setTimeout(incrementTimer, 1000);
     }
 }

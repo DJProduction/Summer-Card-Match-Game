@@ -136,7 +136,7 @@ h1 {
     display: inline-block;
 }
 
-.score-panel .timer {
+.score-panel .counter {
   display: inline-block;
   margin-left: 50px;
 }
