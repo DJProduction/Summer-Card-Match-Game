@@ -4,13 +4,12 @@ let cardsArray = Array.from(cardNodelist);
 
 // Holds the complete deck container
 let deckNodeList = document.querySelector('.deck');
-// Shuffles the origionally created array of cards into new array
-let cardsArrayShuffled = shuffle(cardsArray);
-
+// Holds shuffled cards
+let cardsArrayShuffled;
 // Array will hold the created elements
-let newCardList = [];
+let newCardList;
 // Array will hold the cards opened
-let openedCardList = [];
+let openedCardList;
 
 // Holds number of moves element
 const movesCounter = document.querySelector('.moves');
@@ -19,8 +18,7 @@ let numberOfMoves = 0;
 
 // Timer variables
 let seconds=0, minutes=0
-let counter;
-let counting = false;
+let counter = document.querySelector('.counter');
 
 // Holds the scores rating stars
 let scoreStars = document.querySelector('.stars');
@@ -31,29 +29,59 @@ const emptyStar = "fa fa-star-o";
 // Holds length of time after cards do not match
 const noMatchTimeDelay = 800;
 
+// Holds the timer intervals to be controlled
+let timerInterval;
+
 /*------------------------------GAME START----------------------------*/
 
-// Create new ArrayList update with the cardsArrayShuffled
-// Loops through each card and create its HTML
-// This is necessary because cardsArrayShuffled is not in sync with the new positions.
-// cardsArrayShuffled[0] COULD be pointing to the last row card
-// This makes everything more organized. Ex: newCardList[0] = top left card
-createCardArrayList(newCardList,cardsArrayShuffled);
-// Clears out old deckNodeList. To be replaced by newCardList
-removeCardNodeList(deckNodeList);
-// Adds newCardList array to deckNodeList to display shuffled cards to the screen
-addCardNodeList(newCardList,deckNodeList);
+function gameStart() {
+    // Set the scores, moves, and timer to 0
+    numberOfMoves = 0;
+    minutes = 0;
+    seconds = 0;
+    clearInterval(timerInterval);
+    movesCounter.textContent = numberOfMoves;
+    counter.innerHTML = "Time: " + minutes + ":0" + seconds;
+    for (let i = 0; i < scoreStars.childElementCount; i++) {
+        scoreStars.children[i].children[0].className = fullStar;
+    }
+    incrementTimer();
+
+    // Shuffles the origionally created array of cards into new array
+    cardsArrayShuffled = shuffle(cardsArray);
+    // Create new ArrayList update with the cardsArrayShuffled
+    // Loops through each card and create its HTML
+    // This is necessary because cardsArrayShuffled is not in sync with the new positions.
+    // cardsArrayShuffled[0] COULD be pointing to the last row card
+    // This makes everything more organized. Ex: newCardList[0] = top left card
+    newCardList = [];
+    openedCardList = [];
+    createCardArrayList(newCardList, cardsArrayShuffled);
+    // Clears out old deckNodeList. To be replaced by newCardList
+    removeCardNodeList(deckNodeList);
+    // Adds newCardList array to deckNodeList to display shuffled cards to the screen
+    addCardNodeList(newCardList, deckNodeList);
+
+}
 
 window.onload = function () {
-    counter = document.querySelector('.counter');
-    counting = true;
-    incrementTimer();
+    gameStart();
+}
+
+// User has completed the game and wants to play again.
+// Overlay can only be hidden here since user must complete the game first.
+function restartGame() {
+    document.querySelector('.deck').style.background = 'linear-gradient(160deg, #02ccba 40%, #ffee55 60%)';
+    document.querySelector('.congratulations-overlay.visible').classList.remove('visible');
+    document.querySelector('.congratulations-overlay').classList.add('hidden');
+    gameStart();
 }
 
 /************** EventListeners ***********************/
 
 document.querySelector('.deck').addEventListener('click', cardSelected);
-document.querySelector('.restart').addEventListener('click', restartGame);
+document.querySelector('.restart').addEventListener('click', gameStart);
+document.querySelector('#restart-button').addEventListener('click',restartGame)
 
 /* EventListener Functions */
 
@@ -171,13 +199,19 @@ function checkStarRating(amountOfMoves) {
 // matches openedCardList to the newCardList to make sure that all
 // the cards were successfully matches.
 function winGameCheck(openCardList) {
-    // if(openCardList.length === newCardList.length) {
-    if(openCardList.length === cardsArrayShuffled.length) {
-        counting = false;
-        sessionStorage.setItem("moves", numberOfMoves);
-        let numberOfStars = countStars(scoreStars);
-        sessionStorage.setItem("stars", numberOfStars);
-        window.location.href="winner.html";
+    if (openCardList.length === cardsArrayShuffled.length) {
+        clearInterval(timerInterval);
+        //Get the number moves and stars.
+        //Display on the moves and stars elements in the winners page.
+        document.querySelector('#moves').textContent = numberOfMoves;
+        document.querySelector('#stars').textContent = countStars(scoreStars);
+        //Interval pushes 1 second before stopping.
+        seconds--;
+        //Display time of completion
+        document.querySelector('#timer').textContent = minutes + " minutes and " + seconds + " seconds";
+        //Make overlay visible
+        document.querySelector('.congratulations-overlay.hidden').classList.remove('hidden');
+        document.querySelector('.congratulations-overlay').classList.add('visible');
     }
 }
 
@@ -206,11 +240,6 @@ function changeBackground(amountOfMoves) {
     else if(amountOfMoves === 40) {
         document.querySelector('.deck').style.background = 'linear-gradient(160deg, #e4944a 40%, #bb2c2c 60%)';
     }
-}
-
-// Resets the game by reloading the page
-function restartGame() {
-    location.reload();
 }
 
 /***************** General Card Functions ************************/
@@ -268,8 +297,6 @@ function incrementTimer() {
     else {
         counter.innerHTML = "Time: " + minutes + ":" + seconds;
     }
-    if (counting) {
-        seconds++;
-        setTimeout(incrementTimer, 1000);
-    }
+    seconds++;
+    timerInterval = setTimeout(incrementTimer, 1000);
 }
