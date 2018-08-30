@@ -1,10 +1,7 @@
-# Memory Game Project
+# Summer Memory Game Project
 
 ## Objective
 Match all the similar pairs of cards until tthe board is complete.
-
-## Link to the Game
-[Summer Match Memroy Game](https://github.com/DJProduction/Summer-Card-Match-Game/blob/master/index.html)
 
 ## How to play the game 
 * Left-click to reveal a face down card
@@ -18,11 +15,11 @@ Match all the similar pairs of cards until tthe board is complete.
 ![alt text](https://github.com/DJProduction/Summer-Card-Match-Game/blob/master/img/card_deck_2_stars.png?raw=true "Deck Background")
 * User will also loose stars depending on the number of moves.
 
-## Contributing
-
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
-
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+## Tips
+* Continue to try to beat previous time records to show improvement in memory skills
+* Be cautious of the changing backgrounds, the hotter the background the closer low star ratings you get.
+* If you choose to restart all the positions of the cards from the previous game change.
+* Take your time and have fun!
 
 ## Acknowledgments
 
