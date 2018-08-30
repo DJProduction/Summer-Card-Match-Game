@@ -1,25 +1,25 @@
-# Summer Memory Game Project
+# Summer Memory Match Game
 
 ## Objective
-Match all the similar pairs of cards until tthe board is complete.
+Match all the similar pairs of cards until the board is completely revealed.
 
 ## How to play the game 
-* Left-click to reveal a face down card
-* Click  ![alt text](https://github.com/DJProduction/Summer-Card-Match-Game/blob/master/img/Screen%20Shot%202018-08-29%20at%2011.19.45%20PM.png?raw=true "Restart Icon") to restart the game.
-* You can also restart the game upon when you reveal all the cards.
+* **Left-click** to reveal a face down card
+* **Click**  ![alt text](https://github.com/DJProduction/Summer-Card-Match-Game/blob/master/img/Screen%20Shot%202018-08-29%20at%2011.19.45%20PM.png?raw=true "Restart Icon") to restart the game.
+* You can also restart the game when you reveal all the cards.
 
 ## Rules for game
 * Choose one card at a time to reveal the other side. 
 * Both cards will stay revealed when you flip 2 cards that match each other.
-* When a user reaches a certain amount of moves, the background well get warmer.
+* When a user reaches a certain amount of moves, the background will change and get warmer.
 ![alt text](https://github.com/DJProduction/Summer-Card-Match-Game/blob/master/img/card_deck_2_stars.png?raw=true "Deck Background")
-* User will also loose stars depending on the number of moves.
+* Users will also loose stars depending on the number of moves.
 
 ## Tips
 * Continue to try to beat previous time records to show improvement in memory skills
 * Be cautious of the changing backgrounds, the hotter the background the closer low star ratings you get.
 * If you choose to restart all the positions of the cards from the previous game change.
-* Take your time and have fun!
+* Take your time, stay cool, and have fun!
 
 ## Acknowledgments
 
