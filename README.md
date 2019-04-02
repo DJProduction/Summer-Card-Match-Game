@@ -7,6 +7,7 @@ Match all the similar pairs of cards until the board is completely revealed.
 * **Left-click** to reveal a face down card
 * **Click**  ![alt text](https://github.com/DJProduction/Summer-Card-Match-Game/blob/master/img/Screen%20Shot%202018-08-29%20at%2011.19.45%20PM.png?raw=true "Restart Icon") to restart the game.
 * You can also restart the game when you reveal all the cards.
+* To play the game click here [Summer Card Match Game](https://djproduction.github.io/Summer-Card-Match-Game/)
 
 ## Rules for game
 * Choose one card at a time to reveal the other side. 
